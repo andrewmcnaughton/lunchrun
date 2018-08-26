@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import * as actions from "../actions";
-import ItemListItem from "./ToDoListItem";
+import ItemListItem from "./ItemListItem";
 
 class ItemList extends Component {
   state = {
@@ -26,7 +26,7 @@ class ItemList extends Component {
   renderAddForm = () => {
     const { addFormValue } = this.state;
     return (
-      <div id="itm-add-form">
+      <div id="itme-add-form">
         <form onSubmit={this.handleFormSubmit}>
           <div className="input-field">
             <p className="add">Add to list</p>
