@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import * as actions from "../actions";
-import ToDoListItem from "./ToDoListItem";
+import ItemListItem from "./ToDoListItem";
 
-class ToDoList extends Component {
+class ItemList extends Component {
   state = {
     addFormVisible: false,
     addFormValue: ""
@@ -17,23 +17,23 @@ class ToDoList extends Component {
 
   handleFormSubmit = event => {
     const { addFormValue } = this.state;
-    const { addToDo } = this.props;
+    const { addItem } = this.props;
     event.preventDefault();
-    addToDo({ title: addFormValue });
+    addItem({ title: addFormValue });
     this.setState({ addFormValue: "" });
   };
 
   renderAddForm = () => {
-    const { addFormVisible, addFormValue } = this.state;
+    const { addFormValue } = this.state;
     return (
-      <div id="todo-add-form" className="col s10 offset-s1">
+      <div id="itm-add-form">
         <form onSubmit={this.handleFormSubmit}>
           <div className="input-field">
             <p className="add">Add to list</p>
             <input
               value={addFormValue}
               onChange={this.handleInputChange}
-              id="toDoNext"
+              id="itemNext"
               type="text"
               placeholder="Item Name"
             />
@@ -43,13 +43,13 @@ class ToDoList extends Component {
     );
   };
 
-  renderToDos() {
+  renderItems() {
     const { data } = this.props;
-    const toDos = _.map(data, (value, key) => {
-      return <ToDoListItem key={key} todoId={key} todo={value} />;
+    const items = _.map(data, (value, key) => {
+      return <ItemListItem key={key} itemId={key} item={value} />;
     });
-    if (!_.isEmpty(toDos)) {
-      return toDos;
+    if (!_.isEmpty(items)) {
+      return items;
     }
     return (
       <div className="message">
@@ -59,15 +59,15 @@ class ToDoList extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchToDos();
+    this.props.fetchItems();
   }
 
   render() {
     return (
-      <div className="to-do-list-container">
+      <div className="item-list-container">
         <h1>Lunch run!</h1>
         <div className="row">
-          {this.renderToDos()}
+          {this.renderItems()}
           {this.renderAddForm()}
         </div>
       </div>
@@ -81,4 +81,4 @@ const mapStateToProps = ({ data }) => {
   };
 };
 
-export default connect(mapStateToProps, actions)(ToDoList);
+export default connect(mapStateToProps, actions)(ItemList);

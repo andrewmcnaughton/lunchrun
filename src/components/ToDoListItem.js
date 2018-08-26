@@ -1,23 +1,23 @@
 
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { completeToDo } from "../actions";
+import { removeItem } from "../actions";
 
-class ToDoListItem extends Component {
-  handleCompleteClick = completeToDoId => {
-    const { completeToDo } = this.props;
-    completeToDo(completeToDoId);
+class itemListItem extends Component {
+  handleCompleteClick = removeItemId => {
+    const { removeItem } = this.props;
+    removeItem(removeItemId);
   };
 
   render() {
-    const { todoId, todo } = this.props;
+    const { itemId, item } = this.props;
     return (
-      <div key="toDoName" className="item">
+      <div key="itemName" className="item">
           <p>
-            {todo.title}{" "}
+            {item.title}{" "}
           </p>
           <button
-            onClick={() => this.handleCompleteClick(todoId)}
+            onClick={() => this.handleCompleteClick(itemId)}
             className="button button--add"
           >
             &#x2715;
@@ -27,4 +27,4 @@ class ToDoListItem extends Component {
   }
 }
 
-export default connect(null, { completeToDo })(ToDoListItem);
+export default connect(null, { removeItem })(itemListItem);
