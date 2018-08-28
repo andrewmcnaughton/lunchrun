@@ -1,11 +1,11 @@
 
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
 import * as actions from "../actions";
 import ItemListItem from "./ItemListItem";
 
-class ItemList extends Component {
+class ItemList extends React.Component {
   state = {
     addFormVisible: false,
     addFormValue: ""

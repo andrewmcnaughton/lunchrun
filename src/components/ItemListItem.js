@@ -1,9 +1,9 @@
 
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { removeItem } from "../actions";
 
-class itemListItem extends Component {
+class itemListItem extends React.Component {
   handleCompleteClick = removeItemId => {
     const { removeItem } = this.props;
     removeItem(removeItemId);
